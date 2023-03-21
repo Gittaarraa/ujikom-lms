@@ -20,7 +20,7 @@ Route::get('/', function () {
 })->middleware(['auth'])->name('home');
 
 Route::middleware(['auth'])->group(function() {
-    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::middleware(['role:admin'])->get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/class', [KelasController::class, 'index'])->name('class');
     Route::get('/news', [NewsController::class, 'index'])->name('news');
 });
